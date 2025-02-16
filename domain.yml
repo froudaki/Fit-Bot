@@ -1,0 +1,80 @@
+version: "3.1"
+
+intents:
+  - greet
+  - ask_meal_suggestion
+  - specify_preferences
+  - select_meal
+  - request_new_meal_suggestions
+  - deny_meal
+  - ask_workout_suggestion
+  - workout_location
+  - ask_meditation_guide
+  - request_new_meditation
+  - goodbye
+
+responses:
+  utter_greet:
+  - text: "Hey! I am Fit-Bot, your pal in your fitness journey. If you enjoy the healthy lifestyle, I'm definitely the Bot for you! Do you need help selecting a healthy meal or a workout today, or is it meditation time?"
+
+  utter_goodbye:
+    - text: "Goodbye! Let me know if you need anything else!"
+
+  utter_ask_workout_suggestion:
+    - text: "Would you like a workout plan instead?"
+  
+  utter_ask_workout_location:
+    - text: "Will you be working out at home or at the gym?"
+  
+  utter_no_recipes_found:
+    - text: "Sorry, I couldn't find any recipes matching your preferences. I will give you general healthy meal suggestions instead."
+
+
+slots:
+  preferences:
+    type: list
+    influence_conversation: true
+    mappings:
+      - type: from_text
+
+  stored_recipes:
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  selected_recipe:
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  meal_choice:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+
+  workout_location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+  
+  last_requested_category:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+actions:
+  - action_give_meal_suggestions
+  - action_provide_recipe
+  - action_greet_user
+  - action_ask_preferences
+  - action_utter_no_recipes_found
+  - action_provide_workout_plan
+  - utter_ask_workout_suggestion
+  - utter_ask_workout_location
+  - action_provide_meditation
+  - utter_goodbye

@@ -1,0 +1,60 @@
+version: "3.1"
+
+stories:
+
+- story: User wants a meal suggestion
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_meal_suggestion
+  - action: action_ask_preferences
+  - intent: specify_preferences
+  - action: action_give_meal_suggestions
+
+- story: User selects a meal (Valid Choice)
+  steps:
+  - intent: select_meal
+  - action: action_provide_recipe
+
+- story: User rejects meal suggestions and asks for new ones
+  steps:
+  - intent: request_new_meal_suggestions
+  - action: action_give_meal_suggestions
+
+- story: No recipes found, bot suggests general options
+  steps:
+  - action: action_give_meal_suggestions
+  - action: utter_no_recipes_found
+  - action: action_give_meal_suggestions
+
+- story: User chooses a workout instead
+  steps:
+  - intent: deny_meal
+  - action: utter_ask_workout_suggestion
+  - intent: ask_workout_suggestion
+  - action: utter_ask_workout_location
+  - intent: workout_location
+  - action: action_provide_workout_plan
+
+- story: User selects meditation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_meditation_guide
+  - action: action_provide_meditation
+
+- story: User asks for another meditation guide
+  steps:
+  - intent: ask_meditation_guide
+  - action: action_provide_meditation
+  - slot_was_set:
+      - last_requested_category: "meditation"
+  - intent: request_new_meditation
+  - action: action_provide_meditation
+
+
+
+- story: User says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye

@@ -1,0 +1,48 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+version: "3.1"
+
+stories:
+
+- story: Test fallback for unrecognized intent
+  steps:
+  - user: "ajsdhajshd"  # Random text
+  - action: action_default_fallback
+
+- story: Test API failure for meal suggestions
+  steps:
+  - user: "Give me a meal suggestion"
+    intent: ask_meal_suggestion
+  - action: action_ask_preferences
+  - user: "I want a keto meal"
+    intent: specify_preferences
+  - action: action_give_meal_suggestions
+  - checkpoint: check_api_failure  # Simulate API failure
+
+- story: Test invalid meal choice
+  steps:
+  - checkpoint: check_api_failure
+  - user: "Give me recipe number 5"  # Out of range
+    intent: select_meal
+  - action: action_provide_recipe
+  - user: "Give me a valid recipe"
+    intent: select_meal
+  - action: action_provide_recipe
+
+- story: Test API failure for workouts
+  steps:
+  - user: "I want a workout plan"
+    intent: ask_workout_suggestion
+  - action: utter_ask_workout_location
+  - user: "at home"
+    intent: workout_location
+  - action: action_provide_workout_plan
+  - checkpoint: check_api_failure  # Simulate API failure
+
+- story: Test API failure for meditation guide
+  steps:
+  - user: "Give me a meditation guide"
+    intent: ask_meditation_guide
+  - action: action_provide_meditation
+  - checkpoint: check_api_failure  # Simulate API failure

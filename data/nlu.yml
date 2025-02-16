@@ -1,0 +1,168 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey
+    - good morning
+    - good evening
+    - what's up
+    - hey there
+    - how’s it going?
+    - greetings
+    - nice to meet you
+    - yo!
+    - hi bot
+    - hey FitBot
+
+- intent: ask_meal_suggestion
+  examples: |
+    - Give me a meal suggestion
+    - I need a recipe
+    - Suggest me something to eat
+    - Can you recommend a healthy meal?
+    - What should I cook today?
+    - Do you have any meal ideas?
+    - I want a new dish to try
+    - Help me find a meal
+    - Any meal suggestions?
+    - What's a good healthy meal?
+
+- intent: specify_preferences
+  examples: |
+    - I am vegan
+    - I eat high protein
+    - I follow a low carb diet
+    - I want a gluten-free meal
+    - I prefer vegan and high protein
+    - I have no dietary restrictions
+    - No meat, please
+    - I want something keto-friendly
+    - I need a dairy-free option
+    - No sugar in my meal
+    - I want a meal with lots of protein
+    - I like Mediterranean food
+    - Something vegetarian, please
+    - I need a balanced meal
+    - None
+    - I have no preferences
+    - No restrictions
+    - No specific diet
+    - Just a healthy meal, no preferences
+    - Whatever works for me
+
+- intent: select_meal
+  examples: |
+    - I want the first option
+    - Give me recipe number 2
+    - The third one sounds good
+    - I’ll take the first meal
+    - Number one, please
+    - I pick the second one
+    - Let’s go with three
+    - I choose option 1
+    - The first one looks nice
+    - I’d like to try the second one
+    - I'll take meal number 1
+    - I want the second option
+    - Give me details for meal 3
+    - I'll go with the first recipe
+    - Tell me about the second meal
+    - I choose option 2
+    - I'd like more information on meal 1
+    - What are the ingredients for meal 3?
+    - I pick meal number 2
+    -3
+    -1
+
+- intent: request_new_meal_suggestions
+  examples: |
+    - Show me different options
+    - I don't like these, give me new ones
+    - Can you suggest 3 more recipes?
+    - I need new suggestions
+    - Can you change the options?
+    - None of these look good
+    - I want another set of recipes
+    - Give me something else
+    - Can you generate new meal ideas?
+    - I’m not satisfied, suggest again
+
+- intent: deny_meal
+  examples: |
+    - No, I don’t want food
+    - I don’t need any meal suggestions
+    - I prefer to exercise instead
+    - Skip the food, let’s do workouts
+    - I don’t feel like eating
+    - I am not hungry
+    - I don’t want a meal now
+    - No food for me, thanks
+    - I’ll pass on the food
+    - No, I don’t want a meal suggestion
+    - I'm not interested in meal recommendations
+    - No meals for me, thanks
+    - I don't want a recipe
+    - Skip meal suggestions
+
+- intent: ask_workout_suggestion
+  examples: |
+    - I want a workout plan
+    - Can you suggest a workout for me?
+    - I need help with my exercise routine
+    - Give me a workout suggestion
+    - Suggest a fitness plan
+    - I’d like a workout program
+
+- intent: workout_location
+  examples: |
+    - I will work out at home
+    - I prefer a home workout
+    - I will be working out at the gym
+    - Gym workout for me
+    - I'll be exercising at home
+    - I will work out in a gym
+    - gym
+    - home
+    - at the gym
+    - at home
+
+- intent: ask_meditation_guide
+  examples: |
+    - I want to meditate
+    - Give me a meditation guide
+    - Help me with meditation
+    - I need a meditation session
+    - Can you guide me in meditation?
+    - Teach me how to meditate
+    - Provide a meditation practice
+    - I need relaxation through meditation
+    - Give me a mindfulness exercise
+    - Can you lead me in meditation?
+
+- intent: request_new_meditation
+  examples: |
+    - I want a different one
+    - Show me another guide
+    - More options (for meditation)
+    - Can I get another meditation?
+    - Give me a different meditation guide
+    - Another one, please
+    - I need a new meditation exercise
+    - Can you send me a new meditation?
+    - A different meditation, please
+
+- intent: goodbye
+  examples: |
+    - Goodbye
+    - Bye
+    - See you later
+    - Talk to you soon
+    - Thanks, bye!
+    - Have a great day!
+    - I’m done, thanks
+    - That’s all, bye
+    - See you next time
+    - Bye, FitBot!

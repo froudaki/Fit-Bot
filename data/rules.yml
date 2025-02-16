@@ -1,0 +1,68 @@
+version: "3.1"
+
+rules:
+
+- rule: Greet the user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Ask for meal suggestion
+  steps:
+  - intent: ask_meal_suggestion
+  - action: action_ask_preferences
+
+- rule: Provide meal suggestions
+  steps:
+  - intent: specify_preferences
+  - action: action_give_meal_suggestions
+
+- rule: Handle no recipes found
+  steps:
+  - action: action_give_meal_suggestions
+  - action: utter_no_recipes_found
+  - action: action_give_meal_suggestions  # Provide general meal suggestions
+
+- rule: User selects a meal (Valid Choice)
+  steps:
+  - intent: select_meal
+  - action: action_provide_recipe
+
+- rule: Handle user requesting new meal suggestions
+  steps:
+  - intent: request_new_meal_suggestions
+  - action: action_give_meal_suggestions
+
+- rule: User chooses a workout instead
+  steps:
+  - intent: deny_meal
+  - action: utter_ask_workout_suggestion
+
+- rule: Ask for workout location
+  steps:
+  - intent: ask_workout_suggestion
+  - action: utter_ask_workout_location
+
+- rule: Provide workout plan based on location
+  steps:
+  - intent: workout_location
+  - action: action_provide_workout_plan
+
+- rule: User selects meditation
+  steps:
+  - intent: ask_meditation_guide
+  - action: action_provide_meditation
+
+- rule: User requests another meditation guide
+  condition:
+  - slot_was_set:
+      - last_requested_category: "meditation"
+  steps:
+  - intent: request_new_meditation
+  - action: action_provide_meditation
+
+
+- rule: User says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
