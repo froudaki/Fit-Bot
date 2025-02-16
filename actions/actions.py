@@ -194,7 +194,7 @@ HEADERS = {
 
 # Fixed list of body parts (9 total)
 BODY_PARTS = ["cardio", "shoulders", "chest", "back", "upper legs", "lower legs", "upper arms", "lower arms", "waist"]
-# ✅ Fix: Ensure normalize_location is defined
+# Fix: Ensure normalize_location is defined
 def normalize_location(location):
     """Normalize user input to 'home' or 'gym'"""
     if isinstance(location, str):
