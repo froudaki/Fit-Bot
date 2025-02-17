@@ -60,9 +60,9 @@ class ActionGiveMealSuggestions(Action):
         preferences = tracker.get_slot("preferences")
         stored_recipes = tracker.get_slot("stored_recipes") or []
 
-        # Debug: Print stored recipes before fetching new ones
-        print("\n--- DEBUG: Stored Recipes Before Fetching ---")
-        print(stored_recipes)
+        # # Debug: Print stored recipes before fetching new ones
+        # print("\n--- DEBUG: Stored Recipes Before Fetching ---")
+        # print(stored_recipes)
 
         # Handle variations of "none"
         if not preferences or any(p.lower() in ["none", "no preference", "no restrictions", "i have none"] for p in preferences):
@@ -86,37 +86,37 @@ class ActionGiveMealSuggestions(Action):
                 print("Error parsing JSON:", str(e))
                 return []
 
-        # **Step 1: Fetch new recipes**
+        # Step 1: Fetch new recipes
         new_recipes = fetch_recipes(tags)
 
-        # **Step 2: Debugging Print**
+        # Step 2: Debugging Print
         print("\n--- DEBUG: New Recipes Fetched ---")
         print(new_recipes)
 
-        # **Step 3: If there are enough recipes, suggest them**
+        # Step 3: If there are enough recipes, suggest them
         if len(new_recipes) >= 3:
             recipes = random.sample(new_recipes, 3)  # Pick new unique recipes
         else:
-            # **ONLY switch to general options if not enough recipes are available**
+            # ONLY switch to general options if not enough recipes are available
             if tags and len(new_recipes) < 3:
                 dispatcher.utter_message(
                     text="I couldn't find enough recipes with your preferences. I will now give you general healthy meal suggestions."
                 )
                 new_recipes = fetch_recipes("")  # Fetch general recipes to fill the gap
 
-            # **Final check: If still not enough, tell the user**
+            # Final check: If still not enough, tell the user
             if len(new_recipes) < 3:
                 dispatcher.utter_message(text="I'm sorry, but I couldn't find enough meal suggestions at this time.")
                 return []
 
             recipes = random.sample(new_recipes, min(3, len(new_recipes)))  # Ensure we don't select more than available
 
-        # **Step 4: Store and display new meal options**
+        # Step 4: Store and display new meal options
         stored_recipes = [{"id": recipe["id"], "title": recipe["title"]} for recipe in recipes]
 
-        # Debugging: Print stored recipes after fetching new ones
-        print("\n--- DEBUG: Stored Recipes After Fetching ---")
-        print(stored_recipes)
+        # # Debugging: Print stored recipes after fetching new ones
+        # print("\n--- DEBUG: Stored Recipes After Fetching ---")
+        # print(stored_recipes)
 
         message = "Here are 3 meal suggestions:\n"
         for i, r in enumerate(stored_recipes, start=1):
